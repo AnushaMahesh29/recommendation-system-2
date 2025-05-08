@@ -89,10 +89,15 @@ async def health_check():
         "model": "all-MiniLM-L6-v2",
         "products_loaded": len(products)
     }
+# Update the /recommend endpoint's category parameter options
 @app.get("/recommend")
 async def recommend(
     bio: str = Query(..., min_length=10, description="User description for recommendations"),
-    category: Optional[str] = Query(None, description="Filter by product category"),
+    category: Optional[str] = Query(
+        None,
+        description="Filter by product category",
+        enum=["Mobile Phones", "Women fashion", "Shoe", "perfume", "men clothing"]
+    ),
     name_weight: float = Query(0.3, description="Weight for product name similarity (0-1)")
 ):
     """Get personalized product recommendations considering both names and descriptions"""
@@ -110,8 +115,7 @@ async def recommend(
         # Filter by category if specified
         filtered_products = products
         if category:
-            category = category.lower()
-            filtered_products = [p for p in products if p.category.lower() == category]
+            filtered_products = [p for p in products if p.category.lower() == category.lower()]
             if not filtered_products:
                 raise HTTPException(
                     status_code=404,

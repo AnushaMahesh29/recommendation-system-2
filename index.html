@@ -197,12 +197,26 @@
         }
         
         .product-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px dashed var(--taupe);
-        }
-        
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 1px dashed var(--taupe);
+        background-color: #f9f9f9; /* Fallback background */
+    }
+    
+    /* Responsive image container */
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+    }
+    
+    /* Modern image format support */
+    .product-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
         .product-details {
             padding: 1.8rem;
         }
@@ -279,7 +293,27 @@
             border: 1px solid rgba(139, 69, 19, 0.2);
             font-family: 'Montserrat', sans-serif;
         }
-        
+        /* Add to your existing styles */
+.product-image.image-error {
+    object-fit: contain;
+    padding: 20px;
+    background: 
+        linear-gradient(45deg, #f5f0e688 25%, transparent 25%, transparent 75%, #f5f0e688 75%),
+        linear-gradient(45deg, #f5f0e688 25%, transparent 25%, transparent 75%, #f5f0e688 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+}
+
+.product-image.image-error::after {
+    content: "Image not available";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--taupe);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+}
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -337,16 +371,15 @@
         
         <section class="preference-section">
             <h2 class="section-title">Your Personal Style</h2>
-            <textarea id="bio" placeholder="Tell us about your luxury preferences...&#10;&#10;Example: 'I adore vintage watches, cozy boutique hotels with fireplaces, and Italian leather goods with rich patinas.'"></textarea>
-            
+            <textarea id="bio" placeholder="Describe your style and preferences...&#10;&#10;Examples:&#10;- 'I love minimalist smartphones with great cameras'&#10;- 'Looking for elegant women's dresses for special occasions'&#10;- 'Need comfortable yet stylish sneakers for daily wear'"></textarea>
             <div class="filter-group">
                 <select id="category">
                     <option value="">All Categories</option>
-                    <option value="travel">Travel Experiences</option>
-                    <option value="hotel">Boutique Hotels</option>
-                    <option value="watch">Timepieces</option>
-                    <option value="shoe">Artisan Footwear</option>
-                    <option value="automobiles">Automobiles</option>
+                    <option value="Mobile Phones">Mobile Phones</option>
+                    <option value="Women fashion">Women's Fashion</option>
+                    <option value="Shoe">Footwear</option>
+                    <option value="perfume">Perfumes</option>
+                    <option value="men clothing">Men's Clothing</option>
                 </select>
                 <button class="btn" onclick="getRecommendations()">Discover Treasures</button>
             </div>
@@ -361,7 +394,7 @@
             <h2 class="section-title">Your Curated Collection</h2>
             <div id="results">
                 <div class="empty-state">
-                    <p>Share your preferences above to uncover handpicked luxury items that speak to your soul.</p>
+                    <p>Share your preferences above to uncover handpicke items that speak to your soul.</p>
                 </div>
             </div>
         </section>
@@ -413,47 +446,57 @@
         }
         
         function showResults(products) {
-            const container = document.getElementById("results");
-            
-            if (products.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <p>No items matched your preferences. Perhaps try broadening your description?</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = '<div class="products-grid">';
-            products.forEach(product => {
-                const imagePath = `/assets/${product.image}`;
-                html += `
-                <div class="product-card">
-                    <img src="${imagePath}" alt="${product.name}" class="product-image" onerror="this.src='/assets/default.jpg'">
-                    <div class="product-details">
-                        <h3 class="product-name">${product.name}</h3>
-                        <span class="product-category">${formatCategory(product.category)}</span>
-                        <p class="product-description">${product.description}</p>
-                        <p class="product-price">$${product.price.toLocaleString()}</p>
-                    </div>
-                </div>
-                `;
-            });
-            html += '</div>';
-            
-            container.innerHTML = html;
-        }
+    const container = document.getElementById("results");
+    
+    if (products.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <p>No items matched your preferences. Perhaps try broadening your description?</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '<div class="products-grid">';
+    products.forEach(product => {
+        // Create image path - assumes all images are in assets folder
+        const imagePath = `/assets/${product.image}`;
+        
+        html += `
+        <div class="product-card">
+            <div class="image-container">
+                <img src="${imagePath}" 
+                     alt="${product.name}" 
+                     class="product-image"
+                     loading="lazy"
+                     onerror="this.onerror=null;this.classList.add('image-error')">
+            </div>
+            <div class="product-details">
+                <h3 class="product-name">${product.name}</h3>
+                <span class="product-category">${formatCategory(product.category)}</span>
+                <p class="product-description">${product.description}</p>
+                <p class="product-price">$${product.price.toLocaleString()}</p>
+            </div>
+        </div>
+        `;
+    });
+    html += '</div>';
+    
+    container.innerHTML = html;
+}
+
+        
         
         function formatCategory(category) {
             const categories = {
-                'travel': 'Travel Experience',
-                'hotel': 'Boutique Hotel',
-                'watch': 'Timepiece',
-                'shoe': 'Artisan Shoe',
-                'automobiles': 'Automobile'
-            };
-            return categories[category.toLowerCase()] || category;
-        }
+            'mobile phones': 'Mobile Phone',
+            'women fashion': "Women's Fashion",
+            'shoe': 'Footwear',
+            'perfume': 'Perfume',
+            'men clothing': "Men's Clothing"
+        };
+        return categories[category.toLowerCase()] || category;
+    }
     </script>
 </body>
 </html>
