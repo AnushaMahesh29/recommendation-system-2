@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Personalized Luxury Recommendations</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=EB+Garamond:wght@400;500&family=Montserrat:wght@300;400&display=swap">
+    <style>
+        :root {
+            --cream: #F5F0E6;
+            --taupe: #B8A99A;
+            --terracotta: #C77B5D;
+            --chocolate: #5D4037;
+            --sage: #A5B592;
+            --text: #3E3E3E;
+            --text-light: #7A7A7A;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            color: var(--text);
+            background-color: var(--cream);
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--taupe);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: var(--chocolate);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--taupe);
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        .preference-section {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(184, 169, 154, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .section-title {
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--terracotta);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 140px;
+            padding: 1.2rem;
+            border: 1px solid var(--taupe);
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            resize: none;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text);
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 2px rgba(199, 123, 93, 0.2);
+        }
+        
+        textarea::placeholder {
+            color: var(--taupe);
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        select {
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--taupe);
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            flex-grow: 1;
+            color: var(--text);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B8A99A'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 2px rgba(199, 123, 93, 0.2);
+        }
+        
+        .btn {
+            background-color: var(--terracotta);
+            color: var(--cream);
+            border: none;
+            padding: 1.1rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 400;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 8px rgba(199, 123, 93, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--chocolate);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(93, 64, 55, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .results-section {
+            margin-top: 3rem;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(184, 169, 154, 0.2);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(184, 169, 154, 0.4);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px dashed var(--taupe);
+        }
+        
+        .product-details {
+            padding: 1.8rem;
+        }
+        
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            color: var(--chocolate);
+            font-weight: 600;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background: rgba(165, 181, 146, 0.2);
+            color: var(--sage);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(165, 181, 146, 0.3);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .product-description {
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .product-price {
+            font-weight: 500;
+            color: var(--terracotta);
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(184, 169, 154, 0.2);
+            border-radius: 50%;
+            border-top: 4px solid var(--terracotta);
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--taupe);
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+        
+        .error-message {
+            color: #8B4513;
+            background: rgba(255, 235, 205, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--taupe);
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            border: 1px dashed var(--taupe);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2.5rem;
+            border-top: 1px dashed var(--taupe);
+            color: var(--taupe);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .preference-section {
+                padding: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            select, .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LUXE</h1>
+            <p class="subtitle">Curated luxury for the discerning taste</p>
+        </header>
+        
+        <section class="preference-section">
+            <h2 class="section-title">Your Personal Style</h2>
+            <textarea id="bio" placeholder="Tell us about your luxury preferences...&#10;&#10;Example: 'I adore vintage watches, cozy boutique hotels with fireplaces, and Italian leather goods with rich patinas.'"></textarea>
+            
+            <div class="filter-group">
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option value="travel">Travel Experiences</option>
+                    <option value="hotel">Boutique Hotels</option>
+                    <option value="watch">Timepieces</option>
+                    <option value="shoe">Artisan Footwear</option>
+                    <option value="automobiles">Automobiles</option>
+                </select>
+                <button class="btn" onclick="getRecommendations()">Discover Treasures</button>
+            </div>
+        </section>
+        
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Hand-selecting your luxury matches...</p>
+        </div>
+        
+        <section class="results-section">
+            <h2 class="section-title">Your Curated Collection</h2>
+            <div id="results">
+                <div class="empty-state">
+                    <p>Share your preferences above to uncover handpicked luxury items that speak to your soul.</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 LUXE | Crafted with care for connoisseurs</p>
+        </footer>
+    </div>
+
+    <script>
+        async function getRecommendations() {
+            const bio = document.getElementById("bio").value;
+            const category = document.getElementById("category").value;
+            const loading = document.getElementById("loading");
+            const results = document.getElementById("results");
+            
+            if (!bio.trim()) {
+                results.innerHTML = `
+                    <div class="error-message">
+                        Please share your preferences so we may curate the perfect selection for you.
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show loading state
+            loading.style.display = 'block';
+            results.innerHTML = '';
+            
+            try {
+                const response = await fetch(
+                    `/recommend?bio=${encodeURIComponent(bio)}` + 
+                    (category ? `&category=${category}` : "")
+                );
+                
+                if (!response.ok) throw new Error("We encountered an issue while preparing your recommendations. Please try again.");
+                
+                const products = await response.json();
+                showResults(products);
+            } catch (error) {
+                results.innerHTML = `
+                    <div class="error-message">
+                        ${error.message}
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+        
+        function showResults(products) {
+            const container = document.getElementById("results");
+            
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>No items matched your preferences. Perhaps try broadening your description?</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '<div class="products-grid">';
+            products.forEach(product => {
+                const imagePath = `/assets/${product.image}`;
+                html += `
+                <div class="product-card">
+                    <img src="${imagePath}" alt="${product.name}" class="product-image" onerror="this.src='/assets/default.jpg'">
+                    <div class="product-details">
+                        <h3 class="product-name">${product.name}</h3>
+                        <span class="product-category">${formatCategory(product.category)}</span>
+                        <p class="product-description">${product.description}</p>
+                        <p class="product-price">$${product.price.toLocaleString()}</p>
+                    </div>
+                </div>
+                `;
+            });
+            html += '</div>';
+            
+            container.innerHTML = html;
+        }
+        
+        function formatCategory(category) {
+            const categories = {
+                'travel': 'Travel Experience',
+                'hotel': 'Boutique Hotel',
+                'watch': 'Timepiece',
+                'shoe': 'Artisan Shoe',
+                'automobiles': 'Automobile'
+            };
+            return categories[category.toLowerCase()] || category;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+{
+    "products": [
+      {
+        "id": "TRV-001",
+        "name": "Private Sunset Yacht Tour in Goa",
+        "price": 1200,
+        "image": "OIP.jpg",
+        "description": "Exclusive 3-hour private yacht tour during sunset with champagne and gourmet snacks",
+        "category": "travel"
+      },
+      {
+        "id": "TRV-002",
+        "name": "Luxury African Safari Package",
+        "price": 8500,
+        "image": "OIP (1).jpg",
+        "description": "7-day all-inclusive safari experience with private guides and 5-star lodges",
+        "category": "travel"
+      },
+      {
+        "id": "TRV-003",
+        "name": "Northern Lights Private Jet Experience",
+        "price": 15000,
+        "image": "OIP (2).jpg",
+        "description": "VIP trip to see Aurora Borealis with luxury accommodations and expert photographers",
+        "category": "travel"
+      },
+      {
+        "id": "TRV-004",
+        "name": "Tuscany Wine Tour Helicopter Ride",
+        "price": 3200,
+        "image": "OIP (3).jpg",
+        "description": "Private helicopter tour of Tuscany's finest vineyards with wine tasting",
+        "category": "travel"
+      },
+      {
+        "id": "TRV-005",
+        "name": "Maldives Overwater Villa Package",
+        "price": 7500,
+        "image": "OIP(4).jpg",
+        "description": "5-night stay in luxury overwater villa with private butler and spa treatments",
+        "category": "travel"
+      },
+      {
+        "id": "HTL-001",
+        "name": "The Oberoi Udaivilas, Udaipur",
+        "price": 950,
+        "image": "oip (5).jpg",
+        "description": "Palatial luxury hotel on the banks of Lake Pichola with private boat transfers",
+        "category": "hotel"
+      },
+      {
+        "id": "HTL-002",
+        "name": "Aman Tokyo Executive Suite",
+        "price": 2200,
+        "image": "OIP (6).jpg",
+        "description": "Ultra-luxurious suite with panoramic city views and 24/7 concierge service",
+        "category": "hotel"
+      },
+      {
+        "id": "HTL-003",
+        "name": "Burj Al Arab Royal Suite",
+        "price": 18000,
+        "image": "OIP (7).jpg",
+        "description": "Two-story suite with private cinema, rotating bed, and 24-karat gold iPad",
+        "category": "hotel"
+      },
+      {
+        "id": "HTL-004",
+        "name": "Postcard Mandalay, Goa",
+        "price": 450,
+        "image": "OIP 84).jpg",
+        "description": "Boutique heritage property with private pool villas and Goan-Portuguese architecture",
+        "category": "hotel"
+      },
+      {
+        "id": "HTL-005",
+        "name": "Singita Lebombo Lodge, South Africa",
+        "price": 2800,
+        "image": "OIP (9).jpg",
+        "description": "Luxury lodge with glass-walled suites overlooking Kruger National Park",
+        "category": "hotel"
+      },
+      {
+        "id": "WCH-001",
+        "name": "Patek Philippe Nautilus",
+        "price": 85000,
+        "image": "OIP (10).jpg",
+        "description": "Stainless steel luxury sports watch with blue dial and date complication",
+        "category": "watch"
+      },
+      {
+        "id": "WCH-002",
+        "name": "Rolex Daytona Platinum",
+        "price": 75000,
+        "image": "OIP (11).jpg",
+        "description": "Platinum chronograph with ice blue dial and ceramic bezel",
+        "category": "watch"
+      },
+      {
+        "id": "WCH-003",
+        "name": "Apple Watch Hermès Edition",
+        "price": 1400,
+        "image": "OIP (12).jpg",
+        "description": "Titanium case with exclusive Hermès leather bands and watch faces",
+        "category": "watch"
+      },
+      {
+        "id": "WCH-004",
+        "name": "Audemars Piguet Royal Oak",
+        "price": 52000,
+        "image": "OIP (13).jpg",
+        "description": "Iconic octagonal bezel with Grande Tapisserie dial in stainless steel",
+        "category": "watch"
+      },
+      {
+        "id": "WCH-005",
+        "name": "Jaeger-LeCoultre Reverso",
+        "price": 6800,
+        "image": "OIP (14).jpg",
+        "description": "Art Deco-inspired reversible watch with dual time zone function",
+        "category": "watch"
+      },
+      {
+        "id": "SHO-001",
+        "name": "Berluti Alessandro Oxford",
+        "price": 2200,
+        "image": "OIP (15).jpg",
+        "description": "Patina-leather dress shoes with signature Venezia leather and rubber sole",
+        "category": "shoe"
+      },
+      {
+        "id": "SHO-002",
+        "name": "Christian Louboutin Louis Spike",
+        "price": 1450,
+        "image": "OIP(16).webp",
+        "description": "Men's dress shoes with signature red sole and metal spike detailing",
+        "category": "shoe"
+      },
+      {
+        "id": "SHO-003",
+        "name": "Gucci Princetown Loafers",
+        "price": 850,
+        "image": "OIP (17).jpg",
+        "description": "Horsebit-detailed leather loafers with fur lining and slip-on design",
+        "category": "shoe"
+      },
+      {
+        "id": "SHO-004",
+        "name": "John Lobb Philip II",
+        "price": 1800,
+        "image": "OIP (18).jpg",
+        "description": "Handcrafted double monk straps with museum calf leather",
+        "category": "shoe"
+      },
+      {
+        "id": "SHO-005",
+        "name": "Santoni Goodyear Welted Oxford",
+        "price": 950,
+        "image": "OIP (19).jpg",
+        "description": "Italian-crafted oxfords with hand-painted patina and leather soles",
+        "category": "shoe"
+      },
+      {
+        "id": "AUTO-001",
+        "name": "Range Rover Autobiography LWB",
+        "price": 250000,
+        "image": "OIP (20).jpg",
+        "description": "Long wheelbase luxury SUV with executive rear seats and refrigerator",
+        "category": "automobiles"
+      },
+      {
+        "id": "AUTO-002",
+        "name": "Porsche 911 Turbo S",
+        "price": 215000,
+        "image": "OIP (21).jpg",
+        "description": "640hp sports car with 0-60 in 2.6s and full leather interior",
+        "category": "automobiles"
+      },
+
+      {
+        "id": "AUTO-003",
+        "name": "Bentley Bentayga Azure",
+        "price": 280000,
+        "image": "OIP (22).jpg",
+        "description": "Ultra-luxury SUV with Mulliner interior package and 22 wheels",
+        "category": "automobiles"
+      },
+      {
+        "id": "AUTO-004",
+        "name": "Mercedes-Maybach S680",
+        "price": 220000,
+        "image": "OIP (23).jpg",
+        "description": "V12-powered luxury sedan with rear executive lounge seating",
+        "category": "automobiles"
+      },
+      {
+        "id": "AUTO-005",
+        "name": "Aston Martin DB12 Volante",
+        "price": 275000,
+        "image": "OIP (24).jpg",
+        "description": "Convertible grand tourer with 671hp twin-turbo V8 engine",
+        "category": "automobiles"
+      }
+    
+    ]
+}
